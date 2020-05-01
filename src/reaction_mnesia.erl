@@ -12,7 +12,7 @@ update_counter(From, MsgId, ReqType, Action) ->
   Fun =
     fun() ->
       Record = 
-      case mnesia:read(reactions, MsgId) of
+      case fragmentation:dirty_read(reactions, MsgId) of
         [Data] ->
            Counters = do_update_counter(Data#reactions.counters, ReqType, Action),
            Data#reactions{counters = Counters,
@@ -27,7 +27,7 @@ update_counter(From, MsgId, ReqType, Action) ->
       fragmentation:dirty_write(Record),
       {ok, Record#reactions.counters} 
     end, 
-    case catch mnesia:transaction(Fun) of
+    case catch fragmentation:transaction(Fun) of
       {atomic, {ok, Counters}} ->
          {ok, Counters};
       Reason ->
