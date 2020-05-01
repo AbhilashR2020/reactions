@@ -39,7 +39,7 @@ do_update_counter(Counters, ReqType, Action) ->
   case lists:keysearch(ReqType, 1, Counters) of
     {value,{ReqType, Value}} ->
        if 
-         Action == inc ->
+         Action == <<"increment">> ->
              Value+1;
          true ->
              Value-1
