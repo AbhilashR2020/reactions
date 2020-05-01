@@ -1,0 +1,1 @@
+-record(reactions, {message_id, counters, created, modified}).

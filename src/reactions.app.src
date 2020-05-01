@@ -1,0 +1,11 @@
+{application, reactions,
+        [{description, "reactions as Like/Dislikes"},
+         {vsn, "0.1.0"},
+         {modules, [reactions,
+                    reactions_i,
+                    reactions_app,
+                    reactions_sup]},
+         {registered, []},
+         {applications, [kernel, stdlib, sasl, mnesia]},
+         {mod, {reactions_app, []}}
+]}.
