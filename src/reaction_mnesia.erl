@@ -28,7 +28,7 @@ update_counter(From, MsgId, ReqType, Action) ->
       {ok, Record#reactions.counters} 
     end, 
     case catch fragmentation:transaction(Fun) of
-      {atomic, {ok, Counters}} ->
+      {ok, Counters} ->
          {ok, Counters};
       Reason ->
         {error, Reason}
@@ -57,7 +57,7 @@ do_update_counter(Counters, ReqType, Action) ->
 lookup(MsgId) ->
   case fragmentation:dirty_read(reactions, MsgId) of
     [Record] ->
-      {ok, {MsgId, Record#reactions.counters}};
+      {ok, Record#reactions.counters};
     [] ->
       {error, record_not_found}
   end.
