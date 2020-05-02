@@ -27,7 +27,6 @@ start_link() ->
 %% Supervior CALLBACK functions
 %%====================================================================
 init([]) ->
-   reactions_i:install(), 
    Children = create_children(),
    {ok,{{one_for_one, 10, 1}, Children}}.
 
