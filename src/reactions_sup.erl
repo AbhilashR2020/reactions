@@ -28,7 +28,6 @@ start_link() ->
 %%====================================================================
 init([]) ->
    reactions_i:install(), 
-   ok = mnesia:wait_for_tables([reactions], infinity), %% Need to see whether this option to be enabled or NOT?
    Children = create_children(),
    {ok,{{one_for_one, 10, 1}, Children}}.
 

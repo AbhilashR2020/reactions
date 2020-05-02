@@ -12,8 +12,6 @@
 
 
 start(_Type, _StartArgs) ->
-  mnesia:create_schema([node()]),
-  mnesia:start(),
   case reactions_sup:start_link() of
     {ok, Pid} ->
       alarm_handler:clear_alarm({application_stopped, reactions}),

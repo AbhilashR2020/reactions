@@ -15,8 +15,7 @@ install() ->
 
 
 table_options() ->
-  %%Nodes = [{disc_copies, mnesia:table_info(schema, disc_copies)}],
-  Nodes = [{disc_copies,[node()]}],
+  Nodes = [{disc_copies, mnesia:table_info(schema, disc_copies)}],
   error_logger:info_msg("Installing reactions tables on ~1000.p nodes.~n", [Nodes]),
   Options =   
     [
